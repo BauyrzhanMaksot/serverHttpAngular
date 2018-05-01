@@ -4,8 +4,9 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import {FormsModule} from '@angular/forms';
-import {HttpModule} from '@angular/http';
+
 import {ServiceService} from './service.service';
+import {HttpClientModule} from '@angular/common/http';
 
 
 @NgModule({
@@ -15,7 +16,7 @@ import {ServiceService} from './service.service';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpClientModule
   ],
   providers: [ServiceService],
   bootstrap: [AppComponent]

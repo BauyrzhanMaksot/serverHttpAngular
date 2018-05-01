@@ -1,53 +1,35 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ServiceService} from './service.service';
-import {Response} from '@angular/http';
+import {User} from './shared/user.module';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  servers = [
-    {
-      name: 'Testserver',
-      capacity: 10,
-      id: this.generateId()
-    },
-    {
-      name: 'Liveserver',
-      capacity: 100,
-      id: this.generateId()
-    }
-  ];
+export class AppComponent implements OnInit {
+  servers: User[] = [];
   constructor(private serverService: ServiceService) {}
-  onAddServer(name: string) {
-    this.servers.push({
-      name: name,
-      capacity: 50,
-      id: this.generateId()
-    });
+
+  ngOnInit() {
+    this.onGet();
   }
 
-  onSave() {
-    this.serverService.storeServers(this.servers)
-      .subscribe(
-        (response) => console.log(response),
-        (error) => console.log(error)
-      );
-  }
-
-  onGet() {
-    this.serverService.getServers().subscribe(
-      (response: Response) => {
-        const data = response.json();
-        console.log(data);
-      },
+  onAddUser(firstName: string, contactNumber: string) {
+    this.serverService.storeServers(firstName, contactNumber).subscribe(
+      (response) => console.log(response),
       (error) => console.log(error)
     );
   }
 
-  private generateId() {
-    return Math.round(Math.random() * 10000);
+  onGet() {
+    this.serverService.getServers().subscribe(
+      (users: User[]) => {
+        /*for (const user of users) {
+          this.servers.push(user);
+        }*/ this.servers = users;
+      },
+      (error) => console.log(error)
+    );
   }
 }
