@@ -35,6 +35,9 @@ export class UsersService {
 
   deleteUser(index: number) {
     this.users.splice(index, 1);
-    //this.recipesChanged.next(this.recipes.slice());
+  }
+
+  getRealId(index: number) {
+    return this.users[index].id;
   }
 }

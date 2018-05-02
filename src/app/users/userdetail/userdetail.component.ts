@@ -3,7 +3,6 @@ import {User} from '../users.module';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {UsersService} from '../users.service';
 import {DataStorage} from '../../shared/data-storage.service';
-import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-userdetail',
@@ -35,8 +34,7 @@ export class UserdetailComponent implements OnInit {
   }
 
   onDeleteUser() {
-    this.usersService.deleteUser(this.id);
-    this.dataStorage.deleteUser(this.id).subscribe(
+    this.dataStorage.deleteUser(this.usersService.getRealId(this.id)).subscribe(
       response => {
         console.log(response);
       },
@@ -44,6 +42,7 @@ export class UserdetailComponent implements OnInit {
         console.log(err);
       }
     );
+    this.usersService.deleteUser(this.id);
     this.router.navigate(['/users']);
   }
 }
