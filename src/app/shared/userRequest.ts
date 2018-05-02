@@ -1,4 +1,5 @@
-import {User} from './user.module';
+import {User} from '../users/users.module';
+
 
 export class UserRequest {
   public success: string;
