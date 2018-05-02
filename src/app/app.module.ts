@@ -11,8 +11,12 @@ import { UsersComponent } from './users/users.component';
 import { UserlistComponent } from './users/userlist/userlist.component';
 import { UserdetailComponent } from './users/userdetail/userdetail.component';
 import { UserItemComponent } from './users/userlist/user-item/user-item.component';
+import { UsersStartComponent } from './users/users-start/users-start.component';
 import { HeaderComponent } from './header/header.component';
 import {DropdownDirective} from './shared/dropdown.directive';
+import {AppRoutingModule} from './app-routing.module';
+import {DataStorage} from './shared/data-storage.service';
+import {UsersEditComponent} from './users/users-edit/users-edit.component';
 
 
 @NgModule({
@@ -23,14 +27,17 @@ import {DropdownDirective} from './shared/dropdown.directive';
     UserdetailComponent,
     UserItemComponent,
     HeaderComponent,
-    DropdownDirective
+    DropdownDirective,
+    UsersStartComponent,
+    UsersEditComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule
   ],
-  providers: [ServiceService],
+  providers: [ServiceService, DataStorage ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

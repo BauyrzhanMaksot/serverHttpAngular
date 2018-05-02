@@ -1,14 +1,13 @@
 import {Injectable} from '@angular/core';
-import 'rxjs/Rx';
-import {Observable} from 'rxjs/Observable';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {UserRequest} from './shared/userRequest';
+import {UsersService} from '../users/users.service';
+import {Observable} from 'rxjs/Observable';
+import {UserRequest} from './userRequest';
 
 
 @Injectable()
-export class ServiceService {
+export class DataStorage {
   constructor(private httpClient: HttpClient) {}
-
   storeServers(firstName: string, contactNumber: string) {
     const body = JSON.stringify({ firstName, contactNumber});
     const httpOptions = {
@@ -41,5 +40,4 @@ export class ServiceService {
         }
       );
   }
-
 }
