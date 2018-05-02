@@ -11,7 +11,7 @@ const appRoutes: Routes = [
       {path: '', component: UsersStartComponent },
       {path: 'new', component: UsersEditComponent},
       {path: ':id', component: UserdetailComponent},
-      {path: ':id/edit', component: UsersEditComponent}
+      {path: ':id/edit', component: UsersEditComponent},
     ]}
 ];
 

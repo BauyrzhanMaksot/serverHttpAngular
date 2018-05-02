@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Params} from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+
+
+import { UsersService } from '../users.service';
+import {User} from '../users.module';
+import {DataStorage} from '../../shared/data-storage.service';
 
 @Component({
   selector: 'app-users-edit',
@@ -10,7 +15,11 @@ export class UsersEditComponent implements OnInit {
   id: number;
   editMode = false;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute,
+              private usersService: UsersService,
+              private dataStorage: DataStorage,
+              private router: Router) {
+  }
 
   ngOnInit() {
     this.route.params
@@ -18,9 +27,15 @@ export class UsersEditComponent implements OnInit {
         (params: Params) => {
           this.id = +params['id'];
           this.editMode = params['id'] != null;
-          console.log(this.editMode);
         }
       );
   }
 
+  onAddUser(firstName: string, contactNumber: string) {
+    this.usersService.addUser(new User(100, firstName , contactNumber));
+    this.dataStorage.storeServers(firstName , contactNumber).subscribe(
+      (response) => console.log(response),
+      (error) => console.log(error)
+    );
+  }
 }

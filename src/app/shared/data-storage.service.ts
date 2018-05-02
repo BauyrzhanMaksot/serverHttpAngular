@@ -24,6 +24,22 @@ export class DataStorage {
     );
   }
 
+  deleteUser(id: number) {
+    // console.log(JSON.stringify({id : id}));
+    const body = JSON.stringify({ id });
+    return this.httpClient.post('http://localhost:8080/rest/users/delete', body )/*.map(
+      (response) => {
+        console.log(response)
+        return response;
+      }
+    )*//*.catch(
+      (error) => {
+        console.log(error);
+        return Observable.throw('Something went Wrong');
+      }
+    )*/;
+  }
+
   getUsers() {
     return this.httpClient.get<UserRequest>('http://localhost:8080/rest/users/all')
       /*.map(

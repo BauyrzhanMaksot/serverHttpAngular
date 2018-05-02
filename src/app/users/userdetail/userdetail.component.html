@@ -1,6 +1,8 @@
 <div class="row">
   <div class="col-xs-12">
-    <h1>{{ user.firstName }}</h1>
+    <h1>Name: {{ user.firstName }}</h1>
+    <h3>Contact Number: {{ user.contactNumber }}</h3>
+    <h3>Id: {{ user.id }}</h3>
   </div>
 </div>
 <div class="row">
@@ -13,7 +15,7 @@
       </button>
       <ul class="dropdown-menu">
         <li><a style="cursor:pointer" (click)="OnEditUser()">Edit User</a></li>
-        <li><a style="cursor: pointer">Delete User</a></li>
+        <li><a style="cursor: pointer" (click)="onDeleteUser()">Delete User</a></li>
       </ul>
     </div>
   </div>
