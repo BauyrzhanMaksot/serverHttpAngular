@@ -26,6 +26,6 @@ export class UserdetailComponent implements OnInit {
     );
   }
   OnEditUser() {
-    this.router.navigate(['edit'],{relativeTo: this.route});
+    this.router.navigate(['edit'], {relativeTo: this.route});
   }
 }

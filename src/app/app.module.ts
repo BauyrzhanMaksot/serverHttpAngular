@@ -17,6 +17,7 @@ import {DropdownDirective} from './shared/dropdown.directive';
 import {AppRoutingModule} from './app-routing.module';
 import {DataStorage} from './shared/data-storage.service';
 import {UsersEditComponent} from './users/users-edit/users-edit.component';
+import {UsersService} from './users/users.service';
 
 
 @NgModule({
@@ -37,7 +38,7 @@ import {UsersEditComponent} from './users/users-edit/users-edit.component';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [ServiceService, DataStorage ],
+  providers: [ServiceService, DataStorage, UsersService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

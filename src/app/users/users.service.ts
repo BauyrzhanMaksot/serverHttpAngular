@@ -1,32 +1,23 @@
 import {User} from './users.module';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Injectable, OnInit} from '@angular/core';
+import {Injectable} from '@angular/core';
+import {Subject} from 'rxjs/Subject';
 import {DataStorage} from '../shared/data-storage.service';
 
 @Injectable()
-export class UsersService implements OnInit {
-
+export class UsersService {
+  //usersChanged = new Subject<User[]>();
   users: User[] = [new User(1, 'bauka' , '8777' )];
-  constructor(private httpClient: HttpClient, private dataStorage: DataStorage) {}
-  ngOnInit() {
-    this.setUsers();
-  }
+  constructor(private _dataStorage: DataStorage) {}
+
   getUsers() {
-    return this.users.slice();
+    return this._dataStorage.getUsers();
+  }
+  setUsers(users: User[]) {
+    this.users = users;
+    //this.usersChanged.next(this.users.slice());
   }
 
-  setUsers() {
-    this.dataStorage.getServers().subscribe(
-      (users: User[]) => {
-        /*for (const user of users) {
-          this.servers.push(user);
-        }*/ this.users = users;
-      },
-      (error) => console.log(error)
-    );
-  }
   getRecipe(index: number) {
-    this.setUsers();
     return this.users[index];
   }
 }
